@@ -1,19 +1,17 @@
-﻿using RouteTotalCalculation.Core.ServiceRoute;
+﻿using RouteTotalCalculation.Core.Model;
 using SharpTestsEx;
 
 namespace RouteTotalCalculation.Tests.Helper
 {
 	public static class AssertValues
 	{
-		public static void CheckRouteTotal(RouteTotals routeTotal)
+		public static void CheckRouteTotal(RouteTotalValues routeTotal)
 		{
 			routeTotal.Should().Not.Be.Null();
-			routeTotal.totalCost.Should().Not.Be(0);
-			routeTotal.totalDistance.Should().Not.Be(0);
-			routeTotal.totalFuelUsed.Should().Not.Be(0);
-			routeTotal.totalTime.Should().Not.Be.Empty();
-			routeTotal.totalfuelCost.Should().Not.Be(0);
-			routeTotal.totaltollFeeCost.Should().Not.Be.GreaterThan(1);
+			routeTotal.TotalCost.Should().Not.Be(0);
+			routeTotal.TotalDistance.Should().Not.Be(0);
+			routeTotal.TotalfuelCost.Should().Not.Be(0);
+			routeTotal.TotalTime.Should().Not.Be.Empty();
 		}
 	}
 }

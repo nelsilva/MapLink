@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="Model\RouterTypes.cs" />
+    <Compile Include="Model\RouteTotalValues.cs" />
+    <Compile Include="Model\RouteTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceAddressFinder\Reference.cs">
       <AutoGen>True</AutoGen>

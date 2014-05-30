@@ -7,11 +7,12 @@ namespace RouteTotalCalculation.Core.Services
 {
 	public static class CalculateTotalOfRouteService
 	{
-		public static RouteTotals GetTotalValuesOfRoute(IEnumerable<Address> addresses, RouterTypes routerTypes)
+		public static RouteTotalValues GetTotalValuesOfRoute(IEnumerable<Address> addresses, RouteTypes routerTypes)
 		{
 			var locations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
 			var routes = RouteService.GetRouteStopsFromAddressesLocation(locations);
 
+			//RouterOption com configuração padrão
 			var routeOptions = new RouteOptions
 			{
 				language = "portuguese",
@@ -26,7 +27,12 @@ namespace RouteTotalCalculation.Core.Services
 				}
 			};
 
-			return RouteService.GetRouteTotalsResponse(routes, routeOptions);
+			var routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
+			//Criando um objeto novo somente com as informações relevantes
+			var routeTotalValues = new RouteTotalValues(routeTotal.totalDistance, routeTotal.totalTime,
+				routeTotal.totalfuelCost, routeTotal.totalCost);
+
+			return routeTotalValues;
 		}
 	}
 }

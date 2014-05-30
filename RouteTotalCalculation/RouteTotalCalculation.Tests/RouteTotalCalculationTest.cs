@@ -23,7 +23,7 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouterTypes.DefaultQuickestRoute);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouteTypes.DefaultQuickestRoute);
 		}
 
 		[Test]
@@ -35,14 +35,13 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouterTypes.DefaultQuickestRoute);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouteTypes.DefaultQuickestRoute);
 			routeTotal.Should().Not.Be.Null();
-			routeTotal.totalCost.Should().Be(0);
-			routeTotal.totalDistance.Should().Be(0);
-			routeTotal.totalFuelUsed.Should().Be(0);
-			routeTotal.totalTime.Should().Not.Be.Empty();
-			routeTotal.totalfuelCost.Should().Be(0);
-			routeTotal.totaltollFeeCost.Should().Be(0);
+			routeTotal.TotalCost.Should().Be(0);
+			routeTotal.TotalDistance.Should().Be(0);
+			routeTotal.TotalfuelCost.Should().Be(0);
+			routeTotal.TotalTime.Should().Not.Be.Empty();
+
 		}
 
 		[Test]
@@ -54,7 +53,7 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouterTypes.DefaultQuickestRoute);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouteTypes.DefaultQuickestRoute);
 			AssertValues.CheckRouteTotal(routeTotal);
 		}
 
@@ -68,7 +67,7 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouterTypes.DefaultQuickestRoute);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouteTypes.DefaultQuickestRoute);
 			AssertValues.CheckRouteTotal(routeTotal);
 		}
 
@@ -82,7 +81,7 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouterTypes.RouteAvoidingTraffic);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouteTypes.RouteAvoidingTraffic);
 			AssertValues.CheckRouteTotal(routeTotal);
 		}
 
@@ -178,7 +177,11 @@ namespace RouteTotalCalculation.Tests
 				});
 
 			var routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
-			AssertValues.CheckRouteTotal(routeTotal);
+			routeTotal.Should().Not.Be.Null();
+			routeTotal.totalCost.Should().Not.Be(0);
+			routeTotal.totalDistance.Should().Not.Be(0);
+			routeTotal.totalfuelCost.Should().Not.Be(0);
+			routeTotal.totalTime.Should().Not.Be.Empty();
 		}
 	}
 }
