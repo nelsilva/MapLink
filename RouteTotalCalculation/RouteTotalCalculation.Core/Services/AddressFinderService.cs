@@ -1,7 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 
 namespace RouteTotalCalculation.Core.Services
@@ -12,7 +11,15 @@ namespace RouteTotalCalculation.Core.Services
 		{
 			using (var addressFinderSoapClient = new AddressFinderSoapClient())
 			{
-				return addressFinderSoapClient.findAddress(address, addressOptions, Configuration.TokenValue);
+				try
+				{
+					return addressFinderSoapClient.findAddress(address, addressOptions, Configuration.TokenValue);
+				}
+				catch (Exception)
+				{
+					
+					throw;
+				}
 			}
 		}
 
@@ -20,7 +27,15 @@ namespace RouteTotalCalculation.Core.Services
 		{
 			using (var addressFinderSoapClient = new AddressFinderSoapClient())
 			{
-				return addressFinderSoapClient.getXY(address, Configuration.TokenValue);
+				try
+				{
+					return addressFinderSoapClient.getXY(address, Configuration.TokenValue);
+				}
+				catch (Exception)
+				{
+					
+					throw;
+				}
 			}
 		}
 
@@ -31,6 +46,6 @@ namespace RouteTotalCalculation.Core.Services
 				address = address,
 				point = GetXY(address)
 			}).ToList();
-		}		
+		}
 	}
 }

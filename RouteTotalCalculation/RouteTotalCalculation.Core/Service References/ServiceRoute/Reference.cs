@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace RouteTotalCalculation.Core.ServiceRoute {
     using System.Runtime.Serialization;
     using System;
@@ -3151,7 +3149,7 @@ namespace RouteTotalCalculation.Core.ServiceRoute {
             return base.Channel.GetRouteTotalsBatch(request);
         }
         
-        public IList<RouteTotals> GetRouteTotalsBatch(System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceRoute.RouteArray> ra, RouteTotalCalculation.Core.ServiceRoute.RouteOptions ro, string token) {
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceRoute.RouteTotals> GetRouteTotalsBatch(System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceRoute.RouteArray> ra, RouteTotalCalculation.Core.ServiceRoute.RouteOptions ro, string token) {
             RouteTotalCalculation.Core.ServiceRoute.GetRouteTotalsBatchRequest inValue = new RouteTotalCalculation.Core.ServiceRoute.GetRouteTotalsBatchRequest();
             inValue.Body = new RouteTotalCalculation.Core.ServiceRoute.GetRouteTotalsBatchRequestBody();
             inValue.Body.ra = ra;

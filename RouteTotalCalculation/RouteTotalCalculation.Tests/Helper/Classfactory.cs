@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RouteTotalCalculation.Core.ServiceAddressFinder;
+﻿using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
 using City = RouteTotalCalculation.Core.ServiceAddressFinder.City;
 using Point = RouteTotalCalculation.Core.ServiceRoute.Point;

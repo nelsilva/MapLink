@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using NUnit.Framework;
 using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
@@ -16,6 +15,7 @@ namespace RouteTotalCalculation.Tests
 	public class RouteTotalCalculationTest
 	{
 		[Test]
+		[ExpectedException(typeof(System.ServiceModel.FaultException), UserMessage = "Deve haver ao menos dois pontos de parada. Quantidade de pontos informados: 1")]
 		public void OnlyOneAddress()
 		{
 			IList<Address> addresses = new List<Address>()
@@ -24,13 +24,6 @@ namespace RouteTotalCalculation.Tests
 			};
 
 			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, RouterTypes.DefaultQuickestRoute);
-			routeTotal.Should().Not.Be.Null();
-			routeTotal.totalCost.Should().Be(0);
-			routeTotal.totalDistance.Should().Be(0);
-			routeTotal.totalFuelUsed.Should().Be(0);
-			routeTotal.totalTime.Should().Not.Be.Empty();
-			routeTotal.totalfuelCost.Should().Be(0);
-			routeTotal.totaltollFeeCost.Should().Be(0);
 		}
 
 		[Test]

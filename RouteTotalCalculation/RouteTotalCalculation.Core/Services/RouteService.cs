@@ -13,7 +13,15 @@ namespace RouteTotalCalculation.Core.Services
 		{
 			using (var routeSoapClient = new RouteSoapClient())
 			{
-				return routeSoapClient.getRouteTotals((List<RouteStop>) routes, routeOptions, Configuration.TokenValue);
+				try
+				{
+					return routeSoapClient.getRouteTotals((List<RouteStop>)routes, routeOptions, Configuration.TokenValue);
+				}
+				catch (Exception)
+				{
+					
+					throw;
+				}
 			}
 		}
 
