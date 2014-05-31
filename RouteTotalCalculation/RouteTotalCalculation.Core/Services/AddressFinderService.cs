@@ -41,11 +41,19 @@ namespace RouteTotalCalculation.Core.Services
 
 		public static IList<AddressLocation> GetAddressLocationFromAddresses(IEnumerable<Address> addresses)
 		{
-			return addresses.Select(address => new AddressLocation
+			try
 			{
-				address = address,
-				point = GetXY(address)
-			}).ToList();
+				return addresses.Select(address => new AddressLocation
+				{
+					address = address,
+					point = GetXY(address)
+				}).ToList();
+			}
+			catch (Exception)
+			{
+				
+				throw;
+			}
 		}
 	}
 }

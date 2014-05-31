@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
@@ -7,16 +8,19 @@ namespace RouteTotalCalculation.Core.Services
 {
 	public static class CalculateTotalOfRouteService
 	{
-		public static RouteTotalValues GetTotalValuesOfRoute(IEnumerable<Address> addresses, RouteTypes routerTypes)
+		public static RouteTotalValues GetTotalValuesOfRoute(IEnumerable<Address> addresses, int routeTypes)
 		{
+			if (routeTypes != 0 && routeTypes != 23)
+				throw new Exception("Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito");
+
 			var locations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
 			var routes = RouteService.GetRouteStopsFromAddressesLocation(locations);
 
-			//RouterOption com configuração padrão
+			//RouteOption com configuração padrão
 			var routeOptions = new RouteOptions
 			{
 				language = "portuguese",
-				routeDetails = new RouteDetails { descriptionType = 0, routeType = (int)routerTypes, optimizeRoute = true },
+				routeDetails = new RouteDetails { descriptionType = 0, routeType = routeTypes, optimizeRoute = true },
 				vehicle = new Vehicle
 				{
 					tankCapacity = 20,

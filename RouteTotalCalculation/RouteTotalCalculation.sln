@@ -12,6 +12,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTotalCalculation.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTotalCalculation.Core", "RouteTotalCalculation.Core\RouteTotalCalculation.Core.csproj", "{F6CA0174-BAE0-47AF-89CB-AED98483C11A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTotalCalculation.Api", "RouteTotalCalculation.Api\RouteTotalCalculation.Api.csproj", "{C21D82DF-C40B-4CC7-A148-BCDB24801AFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{B382FB4F-C2D2-4948-9D63-FDAE543A4784}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{FF4D9E22-5950-4764-A4A4-064195DE42CB}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\RouteTotalCalculationApi-WAWS-dev.json = PublishScripts\Configurations\RouteTotalCalculationApi-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTotalCalculation.Api.Tests", "RouteTotalCalculation.Api.Tests\RouteTotalCalculation.Api.Tests.csproj", "{00907A62-A562-4F70-B148-95F2C2F2E7C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +41,19 @@ Global
 		{F6CA0174-BAE0-47AF-89CB-AED98483C11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6CA0174-BAE0-47AF-89CB-AED98483C11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6CA0174-BAE0-47AF-89CB-AED98483C11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21D82DF-C40B-4CC7-A148-BCDB24801AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21D82DF-C40B-4CC7-A148-BCDB24801AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21D82DF-C40B-4CC7-A148-BCDB24801AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21D82DF-C40B-4CC7-A148-BCDB24801AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00907A62-A562-4F70-B148-95F2C2F2E7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00907A62-A562-4F70-B148-95F2C2F2E7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00907A62-A562-4F70-B148-95F2C2F2E7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00907A62-A562-4F70-B148-95F2C2F2E7C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FF4D9E22-5950-4764-A4A4-064195DE42CB} = {B382FB4F-C2D2-4948-9D63-FDAE543A4784}
 	EndGlobalSection
 EndGlobal
