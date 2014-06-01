@@ -96,19 +96,6 @@ namespace RouteTotalCalculation.Tests
 		}
 
 		[Test]
-		public void GetFindAddressTest()
-		{
-			var address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP");
-			var addressOptions = ClassFactory.GetAddressOptions(usePhoneticValue: true, searchTypeValue: 2, pageIndexValue: 1,
-				recordsPerPageValue: 10);
-			var findAddressResponse = AddressFinderService.GetFindAddressResponse(address, addressOptions);
-
-			findAddressResponse.Should().Not.Be.Null();
-			findAddressResponse.pageCount.Should().Not.Be(0);
-			findAddressResponse.recordCount.Should().Not.Be(0);
-		}
-
-		[Test]
 		public void GetPointsFromAddressTest()
 		{
 			var address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP");

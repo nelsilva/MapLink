@@ -7,22 +7,6 @@ namespace RouteTotalCalculation.Core.Services
 {
 	public static class AddressFinderService
 	{
-		public static AddressInfo GetFindAddressResponse(Address address, AddressOptions addressOptions)
-		{
-			using (var addressFinderSoapClient = new AddressFinderSoapClient())
-			{
-				try
-				{
-					return addressFinderSoapClient.findAddress(address, addressOptions, Configuration.TokenValue);
-				}
-				catch (Exception)
-				{
-					
-					throw;
-				}
-			}
-		}
-
 		public static Point GetXY(Address address)
 		{
 			using (var addressFinderSoapClient = new AddressFinderSoapClient())
