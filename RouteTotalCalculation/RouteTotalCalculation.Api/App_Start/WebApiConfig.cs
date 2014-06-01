@@ -20,10 +20,8 @@ namespace RouteTotalCalculation.Api
 			// Web API routes
 			config.MapHttpAttributeRoutes();
 
-			config.Routes.MapHttpRoute(
-				name: "DefaultApi",
-				routeTemplate: "api/{controller}/{id}"
-			);
+			config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}"
+				);
 		}
 	}
 }

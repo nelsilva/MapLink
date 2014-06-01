@@ -13,7 +13,7 @@ namespace RouteTotalCalculation.Core.Services
 		{
 			using (var routeSoapClient = new RouteSoapClient())
 			{
-				return routeSoapClient.getRouteTotals((List<RouteStop>)routes, routeOptions, Configuration.TokenValue);
+				return routeSoapClient.getRouteTotals((List<RouteStop>) routes, routeOptions, Configuration.TokenValue);
 			}
 		}
 
@@ -24,12 +24,12 @@ namespace RouteTotalCalculation.Core.Services
 				description = String.Format("{0}, {1}, {2}, {3}",
 					addressLocation.address.street, addressLocation.address.houseNumber, addressLocation.address.city.name,
 					addressLocation.address.city.state),
-				point = new Point 
-				{ 
-					x = addressLocation.point.x, 
-					y = addressLocation.point.y 
+				point = new Point
+				{
+					x = addressLocation.point.x,
+					y = addressLocation.point.y
 				}
 			}).ToList();
-		}		
+		}
 	}
 }

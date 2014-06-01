@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 using NUnit.Framework;
+using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
 using RouteTotalCalculation.Core.Services;
@@ -13,100 +16,6 @@ namespace RouteTotalCalculation.Tests
 	public class RouteTotalCalculationTest
 	{
 		[Test]
-		[ExpectedException(typeof(System.ServiceModel.FaultException), UserMessage = "Deve haver ao menos dois pontos de parada. Quantidade de pontos informados: 1")]
-		public void OnlyOneAddress()
-		{
-			IList<Address> addresses = new List<Address>
-			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
-			};
-
-			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
-		}
-
-
-		[Test]
-		[ExpectedException(typeof(System.Exception), UserMessage = "Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito")]
-		public void SendDifferentRouteType()
-		{
-			IList<Address> addresses = new List<Address>
-			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
-			};
-
-			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);
-		}
-		[Test]
-		public void OriginAndDestinationWithSameAddress()
-		{
-			IList<Address> addresses = new List<Address>
-			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-			};
-
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
-			routeTotal.Should().Not.Be.Null();
-			routeTotal.TotalCost.Should().Be(0);
-			routeTotal.TotalDistance.Should().Be(0);
-			routeTotal.TotalfuelCost.Should().Be(0);
-			routeTotal.TotalTime.Should().Not.Be.Empty();
-
-		}
-
-		[Test]
-		public void RouteTotalCalculationWith2Addresses()
-		{
-			IList<Address> addresses = new List<Address>
-			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
-			};
-
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
-			AssertValues.CheckRouteTotal(routeTotal);
-		}
-
-		[Test]
-		public void RouteTotalCalculationWithMultipleAddressesAndDefaultQuickestRouteTest()
-		{
-			IList<Address> addresses = new List<Address>
-			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
-			};
-
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
-			AssertValues.CheckRouteTotal(routeTotal);
-		}
-
-		[Test]
-		public void RouteTotalCalculationWithMultipleAddressesAndRouteAvoidingTrafficTest()
-		{
-			IList<Address> addresses = new List<Address>
-			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
-			};
-
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 23);
-			AssertValues.CheckRouteTotal(routeTotal);
-		}
-
-		[Test]
-		public void GetPointsFromAddressTest()
-		{
-			var address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP");
-
-			var points = AddressFinderService.GetCoordinates(address);
-			points.Should().Not.Be.Null();
-			points.x.Should().Not.Be(0);
-			points.y.Should().Not.Be(0);
-		}
-
-		[Test]
 		public void GetAddressLocationFromAddressesTest()
 		{
 			IList<Address> addresses = new List<Address>
@@ -116,7 +25,7 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			var addressLocations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
+			IList<AddressLocation> addressLocations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
 			addressLocations.Should().Not.Be.Null();
 			addressLocations.Count.Should().Be(3);
 			addressLocations[0].point.Should().Not.Be.Null();
@@ -125,25 +34,39 @@ namespace RouteTotalCalculation.Tests
 		}
 
 		[Test]
+		public void GetPointsFromAddressTest()
+		{
+			Address address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP");
+
+			Point points = AddressFinderService.GetCoordinates(address);
+			points.Should().Not.Be.Null();
+			points.x.Should().Not.Be(0);
+			points.y.Should().Not.Be(0);
+		}
+
+		[Test]
 		public void GetRouteStopFromAddressLocationTest()
 		{
 			IList<AddressLocation> locations = new List<AddressLocation>
 			{
-				new AddressLocation { 
-					address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"), 
-					point = new Point { x = -46.6520066, y = -23.5650127}
+				new AddressLocation
+				{
+					address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+					point = new Point {x = -46.6520066, y = -23.5650127}
 				},
-				new AddressLocation { 
-					address = ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"), 
-					point = new Point { x = -46.6520066, y = -23.5650127}
+				new AddressLocation
+				{
+					address = ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+					point = new Point {x = -46.6520066, y = -23.5650127}
 				},
-				new AddressLocation { 
-					address = ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP"), 
-					point = new Point { x = -46.6520066, y = -23.5650127}
+				new AddressLocation
+				{
+					address = ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP"),
+					point = new Point {x = -46.6520066, y = -23.5650127}
 				},
 			};
 
-			var routeStops = RouteService.GetRouteStopsFromAddressesLocation(locations);
+			IList<RouteStop> routeStops = RouteService.GetRouteStopsFromAddressesLocation(locations);
 			routeStops.Should().Not.Be.Null();
 			routeStops.Count.Should().Be(3);
 			routeStops[0].Should().Not.Be.Null();
@@ -161,7 +84,7 @@ namespace RouteTotalCalculation.Tests
 				ClassFactory.GetRouteStop("Av Nove de Julho, 1500", -46.6513602, -23.5564401)
 			};
 
-			var routeOptions = ClassFactory.GetRouteOptions(
+			RouteOptions routeOptions = ClassFactory.GetRouteOptions(
 				"portuguese",
 				new RouteDetails {descriptionType = 0, routeType = 1, optimizeRoute = true},
 				new Vehicle
@@ -173,12 +96,97 @@ namespace RouteTotalCalculation.Tests
 					tollFeeCat = 2
 				});
 
-			var routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
+			RouteTotals routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
 			routeTotal.Should().Not.Be.Null();
 			routeTotal.totalCost.Should().Not.Be(0);
 			routeTotal.totalDistance.Should().Not.Be(0);
 			routeTotal.totalfuelCost.Should().Not.Be(0);
 			routeTotal.totalTime.Should().Not.Be.Empty();
+		}
+
+		[Test]
+		[ExpectedException(typeof (FaultException),
+			UserMessage = "Deve haver ao menos dois pontos de parada. Quantidade de pontos informados: 1")]
+		public void OnlyOneAddress()
+		{
+			IList<Address> addresses = new List<Address>
+			{
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
+			};
+
+			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+		}
+
+
+		[Test]
+		public void OriginAndDestinationWithSameAddress()
+		{
+			IList<Address> addresses = new List<Address>
+			{
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+			};
+
+			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			routeTotal.Should().Not.Be.Null();
+			routeTotal.TotalCost.Should().Be(0);
+			routeTotal.TotalDistance.Should().Be(0);
+			routeTotal.TotalfuelCost.Should().Be(0);
+			routeTotal.TotalTime.Should().Not.Be.Empty();
+		}
+
+		[Test]
+		public void RouteTotalCalculationWith2Addresses()
+		{
+			IList<Address> addresses = new List<Address>
+			{
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+			};
+
+			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			AssertValues.CheckRouteTotal(routeTotal);
+		}
+
+		[Test]
+		public void RouteTotalCalculationWithMultipleAddressesAndDefaultQuickestRouteTest()
+		{
+			IList<Address> addresses = new List<Address>
+			{
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+			};
+
+			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			AssertValues.CheckRouteTotal(routeTotal);
+		}
+
+		[Test]
+		public void RouteTotalCalculationWithMultipleAddressesAndRouteAvoidingTrafficTest()
+		{
+			IList<Address> addresses = new List<Address>
+			{
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+			};
+
+			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 23);
+			AssertValues.CheckRouteTotal(routeTotal);
+		}
+
+		[Test]
+		[ExpectedException(typeof (Exception),
+			UserMessage = "Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito")]
+		public void SendDifferentRouteType()
+		{
+			IList<Address> addresses = new List<Address>
+			{
+				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
+			};
+
+			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);
 		}
 	}
 }

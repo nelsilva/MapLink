@@ -13,7 +13,7 @@ namespace RouteTotalCalculation.Tests.Helper
 			{
 				street = streetValue,
 				houseNumber = houseNumber,
-				city = new City { name = cityNameValue, state = cityStateValue }
+				city = new City {name = cityNameValue, state = cityStateValue}
 			};
 			return address;
 		}

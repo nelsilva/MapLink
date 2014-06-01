@@ -9,18 +9,18 @@ namespace RouteTotalCalculation.Api.Controllers
 {
 	[RoutePrefix("api/v1/public")]
 	public class RouteTotalController : ApiController
-	{   
+	{
 		[Route("GetRouteTotalValue")]
 		public IHttpActionResult GetRouteTotalValue(string jsonAddresses, int routeTypes)
 		{
 			try
 			{
 				if (String.IsNullOrEmpty(jsonAddresses))
-					throw  new Exception("O parâmetro jsonAddresses não pode ser null ou vazio!");
+					throw new Exception("O parâmetro jsonAddresses não pode ser null ou vazio!");
 
 				IList<Address> addresses = JsonConvert.DeserializeObject<List<Address>>(jsonAddresses);
 
-				return Ok(CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, routeTypes));					
+				return Ok(CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, routeTypes));
 			}
 			catch (Exception ex)
 			{

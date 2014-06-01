@@ -6,10 +6,7 @@ namespace RouteTotalCalculation.Core
 	{
 		public static string TokenValue
 		{
-			get
-			{
-				return ConfigurationManager.AppSettings["token"]  ?? "TokenNotFound";
-			}
+			get { return ConfigurationManager.AppSettings["token"] ?? "TokenNotFound"; }
 		}
 	}
 }

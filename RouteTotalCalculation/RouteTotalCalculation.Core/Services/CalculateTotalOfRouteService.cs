@@ -13,14 +13,14 @@ namespace RouteTotalCalculation.Core.Services
 			if (routeTypes != 0 && routeTypes != 23)
 				throw new Exception("Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito");
 
-			var locations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
-			var routes = RouteService.GetRouteStopsFromAddressesLocation(locations);
+			IList<AddressLocation> locations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
+			IList<RouteStop> routes = RouteService.GetRouteStopsFromAddressesLocation(locations);
 
 			//RouteOption com configuração padrão
 			var routeOptions = new RouteOptions
 			{
 				language = "portuguese",
-				routeDetails = new RouteDetails { descriptionType = 0, routeType = routeTypes, optimizeRoute = true },
+				routeDetails = new RouteDetails {descriptionType = 0, routeType = routeTypes, optimizeRoute = true},
 				vehicle = new Vehicle
 				{
 					tankCapacity = 20,
@@ -31,7 +31,7 @@ namespace RouteTotalCalculation.Core.Services
 				}
 			};
 
-			var routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
+			RouteTotals routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
 			//Criando um objeto novo somente com as informações relevantes
 			var routeTotalValues = new RouteTotalValues(routeTotal.totalDistance, routeTotal.totalTime,
 				routeTotal.totalfuelCost, routeTotal.totalCost);
