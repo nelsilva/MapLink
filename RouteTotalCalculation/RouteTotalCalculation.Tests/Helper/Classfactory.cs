@@ -18,18 +18,6 @@ namespace RouteTotalCalculation.Tests.Helper
 			return address;
 		}
 
-		public static AddressOptions GetAddressOptions(bool usePhoneticValue, int searchTypeValue, int pageIndexValue, int recordsPerPageValue)
-		{
-			var addressOptions = new AddressOptions
-			{
-				usePhonetic = usePhoneticValue,
-				searchType = searchTypeValue,
-				resultRange = new ResultRange { pageIndex = pageIndexValue, recordsPerPage = recordsPerPageValue }
-			};
-
-			return addressOptions;
-		}
-
 		public static RouteOptions GetRouteOptions(string languageValue, RouteDetails routeDetails, Vehicle vehicle)
 		{
 			return new RouteOptions

@@ -16,12 +16,12 @@ namespace RouteTotalCalculation.Tests
 		[ExpectedException(typeof(System.ServiceModel.FaultException), UserMessage = "Deve haver ao menos dois pontos de parada. Quantidade de pontos informados: 1")]
 		public void OnlyOneAddress()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
 		}
 
 
@@ -29,17 +29,17 @@ namespace RouteTotalCalculation.Tests
 		[ExpectedException(typeof(System.Exception), UserMessage = "Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito")]
 		public void SendDifferentRouteType()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
 
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);
+			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);
 		}
 		[Test]
 		public void OriginAndDestinationWithSameAddress()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
@@ -57,7 +57,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void RouteTotalCalculationWith2Addresses()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
@@ -70,7 +70,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void RouteTotalCalculationWithMultipleAddressesAndDefaultQuickestRouteTest()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
@@ -84,7 +84,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void RouteTotalCalculationWithMultipleAddressesAndRouteAvoidingTrafficTest()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
@@ -100,7 +100,7 @@ namespace RouteTotalCalculation.Tests
 		{
 			var address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP");
 
-			var points = AddressFinderService.GetXY(address);
+			var points = AddressFinderService.GetCoordinates(address);
 			points.Should().Not.Be.Null();
 			points.x.Should().Not.Be(0);
 			points.y.Should().Not.Be(0);
@@ -109,7 +109,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void GetAddressLocationFromAddressesTest()
 		{
-			IList<Address> addresses = new List<Address>()
+			IList<Address> addresses = new List<Address>
 			{
 				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
@@ -127,7 +127,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void GetRouteStopFromAddressLocationTest()
 		{
-			IList<AddressLocation> locations = new List<AddressLocation>()
+			IList<AddressLocation> locations = new List<AddressLocation>
 			{
 				new AddressLocation { 
 					address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"), 
@@ -154,7 +154,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void GetRouteTotalsTest()
 		{
-			IList<RouteStop> routes = new List<RouteStop>()
+			IList<RouteStop> routes = new List<RouteStop>
 			{
 				ClassFactory.GetRouteStop("Avenida Paulista, 1000", -46.6520066, -23.5650127),
 				ClassFactory.GetRouteStop("Av Pres Juscelino Kubitschek, 1000", -46.679055, -23.589735),

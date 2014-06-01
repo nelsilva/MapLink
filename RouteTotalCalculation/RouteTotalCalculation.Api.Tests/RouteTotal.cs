@@ -10,8 +10,7 @@ namespace RouteTotalCalculation.Api.Tests
 		public void GetRouteTotalValueTest()
 		{
 			var controller = new RouteTotalController();
-			string addressJson =
-				"[{\"street\":\"Avenida Paulista\",\"houseNumber\":\"1000\",\"city\":{\"name\":\"São Paulo\",\"state\":\"SP\"}},{\"street\":\"Av Pres Juscelino Kubitschek\",\"houseNumber\":\"1000\",\"city\":{\"name\":\"São Paulo\",\"state\":\"SP\"}},{\"street\":\"Av Nove de Julho\",\"houseNumber\":\"1500\",\"city\":{\"name\":\"São Paulo\",\"state\":\"SP\"}}]";
+			const string addressJson = "[{\"street\":\"Avenida Paulista\",\"houseNumber\":\"1000\",\"city\":{\"name\":\"São Paulo\",\"state\":\"SP\"}},{\"street\":\"Av Pres Juscelino Kubitschek\",\"houseNumber\":\"1000\",\"city\":{\"name\":\"São Paulo\",\"state\":\"SP\"}},{\"street\":\"Av Nove de Julho\",\"houseNumber\":\"1500\",\"city\":{\"name\":\"São Paulo\",\"state\":\"SP\"}}]";
 			var result = controller.GetRouteTotalValue(addressJson, 0);
 		}
 	}
