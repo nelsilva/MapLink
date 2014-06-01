@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using Newtonsoft.Json;
-using RouteTotalCalculation.Core.ServiceAddressFinder;
+using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.Services;
 
 namespace RouteTotalCalculation.Api.Controllers

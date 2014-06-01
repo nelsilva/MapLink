@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using RouteTotalCalculation.Core.ServiceAddressFinder;
+﻿using RouteTotalCalculation.Core.ServiceAddressFinder;
 
 namespace RouteTotalCalculation.Core.Services
 {
@@ -12,15 +10,6 @@ namespace RouteTotalCalculation.Core.Services
 			{
 				return addressFinderSoapClient.getXY(address, Configuration.TokenValue);
 			}
-		}
-
-		public static IList<AddressLocation> GetAddressLocationFromAddresses(IEnumerable<Address> addresses)
-		{
-			return addresses.Select(address => new AddressLocation
-			{
-				address = address,
-				point = GetCoordinates(address)
-			}).ToList();
 		}
 	}
 }

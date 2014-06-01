@@ -58,7 +58,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helper\AssertValues.cs" />
-    <Compile Include="Helper\ClassFactory.cs" />
     <Compile Include="RouteTotalCalculationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

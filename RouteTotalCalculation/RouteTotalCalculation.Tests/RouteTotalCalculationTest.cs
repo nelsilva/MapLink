@@ -8,6 +8,7 @@ using RouteTotalCalculation.Core.ServiceRoute;
 using RouteTotalCalculation.Core.Services;
 using RouteTotalCalculation.Tests.Helper;
 using SharpTestsEx;
+using Address = RouteTotalCalculation.Core.Model.Address;
 using Point = RouteTotalCalculation.Core.ServiceAddressFinder.Point;
 
 namespace RouteTotalCalculation.Tests
@@ -20,12 +21,12 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			IList<AddressLocation> addressLocations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
+			IList<AddressLocation> addressLocations = ModelFactory.Create(addresses);
 			addressLocations.Should().Not.Be.Null();
 			addressLocations.Count.Should().Be(3);
 			addressLocations[0].point.Should().Not.Be.Null();
@@ -36,9 +37,10 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void GetPointsFromAddressTest()
 		{
-			Address address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP");
+			Address address = ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP");
+			Core.ServiceAddressFinder.Address serviceAddress = ModelFactory.Create(address);
 
-			Point points = AddressFinderService.GetCoordinates(address);
+			Point points = AddressFinderService.GetCoordinates(serviceAddress);
 			points.Should().Not.Be.Null();
 			points.x.Should().Not.Be(0);
 			points.y.Should().Not.Be(0);
@@ -51,22 +53,22 @@ namespace RouteTotalCalculation.Tests
 			{
 				new AddressLocation
 				{
-					address = ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+					address = ModelFactory.Create(ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")),
 					point = new Point {x = -46.6520066, y = -23.5650127}
 				},
 				new AddressLocation
 				{
-					address = ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+					address = ModelFactory.Create(ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP")),
 					point = new Point {x = -46.6520066, y = -23.5650127}
 				},
 				new AddressLocation
 				{
-					address = ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP"),
+					address = ModelFactory.Create(ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")),
 					point = new Point {x = -46.6520066, y = -23.5650127}
 				},
 			};
 
-			IList<RouteStop> routeStops = RouteService.GetRouteStopsFromAddressesLocation(locations);
+			IList<RouteStop> routeStops = ModelFactory.Create(locations);
 			routeStops.Should().Not.Be.Null();
 			routeStops.Count.Should().Be(3);
 			routeStops[0].Should().Not.Be.Null();
@@ -79,12 +81,12 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<RouteStop> routes = new List<RouteStop>
 			{
-				ClassFactory.GetRouteStop("Avenida Paulista, 1000", -46.6520066, -23.5650127),
-				ClassFactory.GetRouteStop("Av Pres Juscelino Kubitschek, 1000", -46.679055, -23.589735),
-				ClassFactory.GetRouteStop("Av Nove de Julho, 1500", -46.6513602, -23.5564401)
+				ModelFactory.Create("Avenida Paulista, 1000", -46.6520066, -23.5650127),
+				ModelFactory.Create("Av Pres Juscelino Kubitschek, 1000", -46.679055, -23.589735),
+				ModelFactory.Create("Av Nove de Julho, 1500", -46.6513602, -23.5564401)
 			};
 
-			RouteOptions routeOptions = ClassFactory.GetRouteOptions(
+			RouteOptions routeOptions = ModelFactory.Create(
 				"portuguese",
 				new RouteDetails {descriptionType = 0, routeType = 1, optimizeRoute = true},
 				new Vehicle
@@ -111,7 +113,7 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
 
 			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
@@ -123,8 +125,8 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 			};
 
 			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
@@ -140,8 +142,8 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
 			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
@@ -153,9 +155,9 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
 			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
@@ -167,9 +169,9 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
-				ClassFactory.GetAddress("Av Nove de Julho", "1500", "São Paulo", "SP")
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
+				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
 			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 23);
@@ -183,7 +185,7 @@ namespace RouteTotalCalculation.Tests
 		{
 			IList<Address> addresses = new List<Address>
 			{
-				ClassFactory.GetAddress("Avenida Paulista", "1000", "São Paulo", "SP")
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
 
 			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);

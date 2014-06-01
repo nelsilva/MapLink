@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
+using Address = RouteTotalCalculation.Core.Model.Address;
 
 namespace RouteTotalCalculation.Core.Services
 {
-	public static class CalculateTotalOfRouteService
+	public static class CalculateTotalOfRouteService 
 	{
 		public static RouteTotalValues GetTotalValuesOfRoute(IEnumerable<Address> addresses, int routeTypes)
 		{
 			if (routeTypes != 0 && routeTypes != 23)
 				throw new Exception("Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito");
 
-			IList<AddressLocation> locations = AddressFinderService.GetAddressLocationFromAddresses(addresses);
-			IList<RouteStop> routes = RouteService.GetRouteStopsFromAddressesLocation(locations);
+			IEnumerable<AddressLocation> locations = ModelFactory.Create(addresses);
+			IList<RouteStop> routes = ModelFactory.Create(locations);
 
 			//RouteOption com configuração padrão
 			var routeOptions = new RouteOptions
