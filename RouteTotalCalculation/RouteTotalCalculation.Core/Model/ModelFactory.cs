@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RouteTotalCalculation.Core.Contracts;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
 using RouteTotalCalculation.Core.Services;
@@ -11,7 +12,7 @@ namespace RouteTotalCalculation.Core.Model
 {
 	public static class ModelFactory
 	{
-		public static ServiceAddressFinder.Address Create(Address address)
+		public static ServiceAddressFinder.Address Create(IAddress address)
 		{
 			var serviceAddress = new ServiceAddressFinder.Address
 			{
@@ -22,7 +23,7 @@ namespace RouteTotalCalculation.Core.Model
 			return serviceAddress;
 		}
 
-		public static IList<AddressLocation> Create(IEnumerable<Address> addresses)
+		public static IList<AddressLocation> Create(IEnumerable<IAddress> addresses)
 		{
 			return addresses.Select(Create).Select(serviceAddress => new AddressLocation
 			{
@@ -45,7 +46,7 @@ namespace RouteTotalCalculation.Core.Model
 			}).ToList();
 		}
 
-		public static Address Create(string streetValue, string houseNumber, string cityNameValue, string cityStateValue)
+		public static IAddress Create(string streetValue, string houseNumber, string cityNameValue, string cityStateValue)
 		{
 			return new Address(streetValue, houseNumber, cityNameValue, cityStateValue);
 		}
@@ -66,6 +67,29 @@ namespace RouteTotalCalculation.Core.Model
 			{
 				description = descriptionValue,
 				point = new Point { x = xValue, y = yValue }
+			};
+		}
+
+		public static IRouteTotalValues Create(RouteTotals routeTotals)
+		{
+			return new RouteTotalValues(routeTotals.totalDistance, routeTotals.totalTime, routeTotals.totalfuelCost, routeTotals.totalCost);
+		}
+
+		public static RouteOptions Create(int routeTypes)
+		{
+			//RouteOption com configuração padrão
+			return new RouteOptions
+			{
+				language = "portuguese",
+				routeDetails = new RouteDetails {descriptionType = 0, routeType = routeTypes, optimizeRoute = true},
+				vehicle = new Vehicle
+				{
+					tankCapacity = 20,
+					averageConsumption = 9,
+					fuelPrice = 3,
+					averageSpeed = 60,
+					tollFeeCat = 2
+				}
 			};
 		}
 	}

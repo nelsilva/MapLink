@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using NUnit.Framework;
+using RouteTotalCalculation.Core.Contracts;
 using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
 using RouteTotalCalculation.Core.Services;
 using RouteTotalCalculation.Tests.Helper;
 using SharpTestsEx;
-using Address = RouteTotalCalculation.Core.Model.Address;
 using Point = RouteTotalCalculation.Core.ServiceAddressFinder.Point;
 
 namespace RouteTotalCalculation.Tests
@@ -19,7 +19,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void GetAddressLocationFromAddressesTest()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
@@ -37,7 +37,7 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void GetPointsFromAddressTest()
 		{
-			Address address = ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP");
+			IAddress address = ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP");
 			Core.ServiceAddressFinder.Address serviceAddress = ModelFactory.Create(address);
 
 			Point points = AddressFinderService.GetCoordinates(serviceAddress);
@@ -86,17 +86,7 @@ namespace RouteTotalCalculation.Tests
 				ModelFactory.Create("Av Nove de Julho, 1500", -46.6513602, -23.5564401)
 			};
 
-			RouteOptions routeOptions = ModelFactory.Create(
-				"portuguese",
-				new RouteDetails {descriptionType = 0, routeType = 1, optimizeRoute = true},
-				new Vehicle
-				{
-					tankCapacity = 20,
-					averageConsumption = 9,
-					fuelPrice = 3,
-					averageSpeed = 60,
-					tollFeeCat = 2
-				});
+			RouteOptions routeOptions = ModelFactory.Create(routeTypes: 23);
 
 			RouteTotals routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
 			routeTotal.Should().Not.Be.Null();
@@ -111,7 +101,7 @@ namespace RouteTotalCalculation.Tests
 			UserMessage = "Deve haver ao menos dois pontos de parada. Quantidade de pontos informados: 1")]
 		public void OnlyOneAddress()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
@@ -123,13 +113,13 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void OriginAndDestinationWithSameAddress()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 			};
 
-			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
 			routeTotal.Should().Not.Be.Null();
 			routeTotal.TotalCost.Should().Be(0);
 			routeTotal.TotalDistance.Should().Be(0);
@@ -140,41 +130,41 @@ namespace RouteTotalCalculation.Tests
 		[Test]
 		public void RouteTotalCalculationWith2Addresses()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
 			AssertValues.CheckRouteTotal(routeTotal);
 		}
 
 		[Test]
 		public void RouteTotalCalculationWithMultipleAddressesAndDefaultQuickestRouteTest()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
 			AssertValues.CheckRouteTotal(routeTotal);
 		}
 
 		[Test]
 		public void RouteTotalCalculationWithMultipleAddressesAndRouteAvoidingTrafficTest()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Av Pres Juscelino Kubitschek", "1000", "São Paulo", "SP"),
 				ModelFactory.Create("Av Nove de Julho", "1500", "São Paulo", "SP")
 			};
 
-			RouteTotalValues routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 23);
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 23);
 			AssertValues.CheckRouteTotal(routeTotal);
 		}
 
@@ -183,12 +173,28 @@ namespace RouteTotalCalculation.Tests
 			UserMessage = "Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito")]
 		public void SendDifferentRouteType()
 		{
-			IList<Address> addresses = new List<Address>
+			IEnumerable<IAddress> addresses = new List<IAddress>
 			{
 				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")
 			};
 
 			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);
+		}
+
+		[Test]
+		public void AddressIncompleteTest()
+		{
+			IEnumerable<IAddress> addresses = new List<IAddress>
+			{
+				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", null)
+			};
+
+			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
+			routeTotal.Should().Not.Be.Null();
+			routeTotal.TotalCost.Should().Be(0);
+			routeTotal.TotalDistance.Should().Be(0);
+			routeTotal.TotalfuelCost.Should().Be(0);
+			routeTotal.TotalTime.Should().Not.Be.Empty();
 		}
 	}
 }

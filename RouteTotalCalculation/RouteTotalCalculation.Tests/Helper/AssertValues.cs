@@ -1,11 +1,12 @@
-﻿using RouteTotalCalculation.Core.Model;
+﻿using RouteTotalCalculation.Core.Contracts;
+using RouteTotalCalculation.Core.Model;
 using SharpTestsEx;
 
 namespace RouteTotalCalculation.Tests.Helper
 {
 	public static class AssertValues
 	{
-		public static void CheckRouteTotal(RouteTotalValues routeTotal)
+		public static void CheckRouteTotal(IRouteTotalValues routeTotal)
 		{
 			routeTotal.Should().Not.Be.Null();
 			routeTotal.TotalCost.Should().Not.Be(0);

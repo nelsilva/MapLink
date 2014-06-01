@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -42,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Contracts\IAddress.cs" />
+    <Compile Include="Contracts\IRouteTotalValues.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\ModelFactory.cs" />
     <Compile Include="Model\RouteTotalValues.cs" />

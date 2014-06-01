@@ -1,6 +1,8 @@
-﻿namespace RouteTotalCalculation.Core.Model
+﻿using RouteTotalCalculation.Core.Contracts;
+
+namespace RouteTotalCalculation.Core.Model
 {
-	public class Address
+	public class Address : IAddress
 	{
 		public Address(string street, string houseNumber, string city, string state)
 		{
