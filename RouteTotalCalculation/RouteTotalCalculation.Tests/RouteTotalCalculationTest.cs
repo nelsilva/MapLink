@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ServiceModel;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using RouteTotalCalculation.Core.Contracts;
 using RouteTotalCalculation.Core.Model;
@@ -97,20 +95,6 @@ namespace RouteTotalCalculation.Tests
 		}
 
 		[Test]
-		[ExpectedException(typeof (FaultException),
-			UserMessage = "Deve haver ao menos dois pontos de parada. Quantidade de pontos informados: 1")]
-		public void OnlyOneAddress()
-		{
-			IEnumerable<IAddress> addresses = new List<IAddress>
-			{
-				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")
-			};
-
-			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
-		}
-
-
-		[Test]
 		public void OriginAndDestinationWithSameAddress()
 		{
 			IEnumerable<IAddress> addresses = new List<IAddress>
@@ -166,35 +150,6 @@ namespace RouteTotalCalculation.Tests
 
 			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 23);
 			AssertValues.CheckRouteTotal(routeTotal);
-		}
-
-		[Test]
-		[ExpectedException(typeof (Exception),
-			UserMessage = "Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito")]
-		public void SendDifferentRouteType()
-		{
-			IEnumerable<IAddress> addresses = new List<IAddress>
-			{
-				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", "SP")
-			};
-
-			CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 1);
-		}
-
-		[Test]
-		public void AddressIncompleteTest()
-		{
-			IEnumerable<IAddress> addresses = new List<IAddress>
-			{
-				ModelFactory.Create("Avenida Paulista", "1000", "São Paulo", null)
-			};
-
-			var routeTotal = CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, 0);
-			routeTotal.Should().Not.Be.Null();
-			routeTotal.TotalCost.Should().Be(0);
-			routeTotal.TotalDistance.Should().Be(0);
-			routeTotal.TotalfuelCost.Should().Be(0);
-			routeTotal.TotalTime.Should().Not.Be.Empty();
 		}
 	}
 }

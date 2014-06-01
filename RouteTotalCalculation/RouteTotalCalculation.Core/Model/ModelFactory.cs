@@ -14,6 +14,7 @@ namespace RouteTotalCalculation.Core.Model
 	{
 		public static ServiceAddressFinder.Address Create(IAddress address)
 		{
+			if (address == null) throw new ArgumentNullException("address");
 			var serviceAddress = new ServiceAddressFinder.Address
 			{
 				street = address.Street,
@@ -25,6 +26,7 @@ namespace RouteTotalCalculation.Core.Model
 
 		public static IList<AddressLocation> Create(IEnumerable<IAddress> addresses)
 		{
+			if (addresses == null) throw new ArgumentNullException("addresses");
 			return addresses.Select(Create).Select(serviceAddress => new AddressLocation
 			{
 				address = serviceAddress, point = AddressFinderService.GetCoordinates(serviceAddress)
@@ -51,16 +53,6 @@ namespace RouteTotalCalculation.Core.Model
 			return new Address(streetValue, houseNumber, cityNameValue, cityStateValue);
 		}
 
-		public static RouteOptions Create(string languageValue, RouteDetails routeDetails, Vehicle vehicle)
-		{
-			return new RouteOptions
-			{
-				language = languageValue,
-				routeDetails = routeDetails,
-				vehicle = vehicle
-			};
-		}
-
 		public static RouteStop Create(string descriptionValue, double xValue, double yValue)
 		{
 			return new RouteStop
@@ -77,6 +69,9 @@ namespace RouteTotalCalculation.Core.Model
 
 		public static RouteOptions Create(int routeTypes)
 		{
+			if (routeTypes != 0 && routeTypes != 23)
+				throw new Exception("Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito");
+
 			//RouteOption com configuração padrão
 			return new RouteOptions
 			{

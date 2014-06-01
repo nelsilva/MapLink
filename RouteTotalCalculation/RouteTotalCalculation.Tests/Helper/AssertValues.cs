@@ -1,5 +1,4 @@
 ﻿using RouteTotalCalculation.Core.Contracts;
-using RouteTotalCalculation.Core.Model;
 using SharpTestsEx;
 
 namespace RouteTotalCalculation.Tests.Helper

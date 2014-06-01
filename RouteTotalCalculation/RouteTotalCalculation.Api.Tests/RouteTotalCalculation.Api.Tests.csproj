@@ -44,6 +44,12 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SharpTestsEx">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx.Mvc">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -64,7 +70,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="RouteTotal.cs" />
+    <Compile Include="RouteTotalApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,10 @@
     <ProjectReference Include="..\RouteTotalCalculation.Api\RouteTotalCalculation.Api.csproj">
       <Project>{c21d82df-c40b-4cc7-a148-bcdb24801afc}</Project>
       <Name>RouteTotalCalculation.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RouteTotalCalculation.Core\RouteTotalCalculation.Core.csproj">
+      <Project>{F6CA0174-BAE0-47AF-89CB-AED98483C11A}</Project>
+      <Name>RouteTotalCalculation.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

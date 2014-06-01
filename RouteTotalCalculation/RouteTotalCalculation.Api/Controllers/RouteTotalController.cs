@@ -24,7 +24,9 @@ namespace RouteTotalCalculation.Api.Controllers
 			}
 			catch (Exception ex)
 			{
-				return InternalServerError(ex);
+				//Passando apenas a mensagem de erro e removendo o stacktrace
+				var exception = new Exception(ex.Message);
+				return InternalServerError(exception);
 			}
 		}
 	}
