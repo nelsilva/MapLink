@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dd3abfd6-8c4b-4c39-b8e8-a397e03f5a0f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1756728e-c95d-4730-8356-3e816375e411" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -20,11 +20,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://services.maplink.com.br/webservices/v3.1/AddressFinder/AddressFinder.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://services.maplink.com.br/webservices/v3/AddressFinder/AddressFinder.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AddressFinder.disco" MetadataType="Disco" ID="563d0213-85ec-4713-bef4-b2cb6fc8ed42" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3.1/AddressFinder/AddressFinder.asmx?disco" />
-    <MetadataFile FileName="AddressFinder.wsdl" MetadataType="Wsdl" ID="fe74ba07-bae1-4a18-988a-9ee298118680" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3.1/AddressFinder/AddressFinder.asmx?wsdl" />
+    <MetadataFile FileName="AddressFinder.wsdl" MetadataType="Wsdl" ID="8bd06950-2193-42db-989c-f9211afaf134" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3/AddressFinder/AddressFinder.asmx?wsdl" />
+    <MetadataFile FileName="AddressFinder.disco" MetadataType="Disco" ID="ffb79117-2703-4485-8714-fd8689666484" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3/AddressFinder/AddressFinder.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

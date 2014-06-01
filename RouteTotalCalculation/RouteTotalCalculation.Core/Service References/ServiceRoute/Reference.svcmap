@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4e3319f4-7797-4021-889a-7f466e74e672" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="81ccc4a0-98c7-4ae7-832e-2e3d8dc3fdbb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -23,8 +23,8 @@
     <MetadataSource Address="http://services.maplink.com.br/webservices/v3/route/route.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="route.disco" MetadataType="Disco" ID="9c19c7e5-b399-48dd-8568-0b092d06226d" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3/route/route.asmx?disco" />
-    <MetadataFile FileName="route.wsdl" MetadataType="Wsdl" ID="cd1cd7b3-7382-417c-862e-952cdbef85a4" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3/route/route.asmx?wsdl" />
+    <MetadataFile FileName="route.disco" MetadataType="Disco" ID="b819a095-0f6e-4853-bfc6-b685fbeebc6e" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3/route/route.asmx?disco" />
+    <MetadataFile FileName="route.wsdl" MetadataType="Wsdl" ID="0fd7141d-c524-4701-8383-ee4990deb237" SourceId="1" SourceUrl="http://services.maplink.com.br/webservices/v3/route/route.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

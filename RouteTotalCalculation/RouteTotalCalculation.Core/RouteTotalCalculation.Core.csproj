@@ -38,6 +38,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
@@ -73,7 +74,7 @@
     <None Include="Service References\ServiceAddressFinder\RouteTotalCalculation.Core.ServiceAddressFinder.CityLocationInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceAddressFinder\RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo.datasource">
+    <None Include="Service References\ServiceAddressFinder\RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceAddressFinder\RouteTotalCalculation.Core.ServiceAddressFinder.MapInfo.datasource">
@@ -83,9 +84,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceAddressFinder\RouteTotalCalculation.Core.ServiceAddressFinder.Point.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceAddressFinder\RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceRoute\route.wsdl" />
@@ -108,10 +106,24 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\route.disco" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceAddressFinder\" />
     <WCFMetadataStorage Include="Service References\ServiceRoute\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRoute\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceAddressFinder\AddressFinder.disco" />
@@ -124,21 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceAddressFinder\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\route.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceRoute\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

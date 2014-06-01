@@ -9,7 +9,11 @@
 //------------------------------------------------------------------------------
 
 namespace RouteTotalCalculation.Core.ServiceAddressFinder {
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
+    using System.Runtime.Serialization;
+    using System;
+    
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="City", Namespace="http://webservices.maplink2.com.br")]
     [System.SerializableAttribute()]
@@ -408,9 +412,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         private RouteTotalCalculation.Core.ServiceAddressFinder.City cityField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string zoneField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -486,19 +487,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
-        public string zone {
-            get {
-                return this.zoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.zoneField, value) != true)) {
-                    this.zoneField = value;
-                    this.RaisePropertyChanged("zone");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -518,6 +506,8 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private int matchTypeField;
+        
         private bool usePhoneticField;
         
         private int searchTypeField;
@@ -535,6 +525,19 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int matchType {
+            get {
+                return this.matchTypeField;
+            }
+            set {
+                if ((this.matchTypeField.Equals(value) != true)) {
+                    this.matchTypeField = value;
+                    this.RaisePropertyChanged("matchType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public bool usePhonetic {
             get {
                 return this.usePhoneticField;
@@ -547,7 +550,7 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
         public int searchType {
             get {
                 return this.searchTypeField;
@@ -560,7 +563,7 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
         public RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange resultRange {
             get {
                 return this.resultRangeField;
@@ -774,535 +777,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=6)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Point point {
-            get {
-                return this.pointField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.pointField, value) != true)) {
-                    this.pointField = value;
-                    this.RaisePropertyChanged("point");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Road", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class Road : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string roadNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string zipField;
-        
-        private RouteTotalCalculation.Core.ServiceAddressFinder.City cityField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string name {
-            get {
-                return this.nameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nameField, value) != true)) {
-                    this.nameField = value;
-                    this.RaisePropertyChanged("name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string roadNumber {
-            get {
-                return this.roadNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.roadNumberField, value) != true)) {
-                    this.roadNumberField = value;
-                    this.RaisePropertyChanged("roadNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string zip {
-            get {
-                return this.zipField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.zipField, value) != true)) {
-                    this.zipField = value;
-                    this.RaisePropertyChanged("zip");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false, Order=3)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.City city {
-            get {
-                return this.cityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.cityField, value) != true)) {
-                    this.cityField = value;
-                    this.RaisePropertyChanged("city");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RoadInfo", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class RoadInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int recordCountField;
-        
-        private int pageCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.RoadLocation> roadLocationField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public int recordCount {
-            get {
-                return this.recordCountField;
-            }
-            set {
-                if ((this.recordCountField.Equals(value) != true)) {
-                    this.recordCountField = value;
-                    this.RaisePropertyChanged("recordCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public int pageCount {
-            get {
-                return this.pageCountField;
-            }
-            set {
-                if ((this.pageCountField.Equals(value) != true)) {
-                    this.pageCountField = value;
-                    this.RaisePropertyChanged("pageCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.RoadLocation> roadLocation {
-            get {
-                return this.roadLocationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.roadLocationField, value) != true)) {
-                    this.roadLocationField = value;
-                    this.RaisePropertyChanged("roadLocation");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RoadLocation", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class RoadLocation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private RouteTotalCalculation.Core.ServiceAddressFinder.Road roadField;
-        
-        private RouteTotalCalculation.Core.ServiceAddressFinder.RoadDetail roadDetailField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Road road {
-            get {
-                return this.roadField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.roadField, value) != true)) {
-                    this.roadField = value;
-                    this.RaisePropertyChanged("road");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.RoadDetail roadDetail {
-            get {
-                return this.roadDetailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.roadDetailField, value) != true)) {
-                    this.roadDetailField = value;
-                    this.RaisePropertyChanged("roadDetail");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RoadDetail", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class RoadDetail : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string alterNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string complementField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string districtField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string directionField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string alterName {
-            get {
-                return this.alterNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.alterNameField, value) != true)) {
-                    this.alterNameField = value;
-                    this.RaisePropertyChanged("alterName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string complement {
-            get {
-                return this.complementField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.complementField, value) != true)) {
-                    this.complementField = value;
-                    this.RaisePropertyChanged("complement");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string district {
-            get {
-                return this.districtField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.districtField, value) != true)) {
-                    this.districtField = value;
-                    this.RaisePropertyChanged("district");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string direction {
-            get {
-                return this.directionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.directionField, value) != true)) {
-                    this.directionField = value;
-                    this.RaisePropertyChanged("direction");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="District", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class District : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private RouteTotalCalculation.Core.ServiceAddressFinder.City cityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string zoneField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.City city {
-            get {
-                return this.cityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.cityField, value) != true)) {
-                    this.cityField = value;
-                    this.RaisePropertyChanged("city");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string name {
-            get {
-                return this.nameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nameField, value) != true)) {
-                    this.nameField = value;
-                    this.RaisePropertyChanged("name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string zone {
-            get {
-                return this.zoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.zoneField, value) != true)) {
-                    this.zoneField = value;
-                    this.RaisePropertyChanged("zone");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DistrictInfo", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class DistrictInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private int recordCountField;
-        
-        private int pageCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.DistrictLocation> districtLocationField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public int recordCount {
-            get {
-                return this.recordCountField;
-            }
-            set {
-                if ((this.recordCountField.Equals(value) != true)) {
-                    this.recordCountField = value;
-                    this.RaisePropertyChanged("recordCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
-        public int pageCount {
-            get {
-                return this.pageCountField;
-            }
-            set {
-                if ((this.pageCountField.Equals(value) != true)) {
-                    this.pageCountField = value;
-                    this.RaisePropertyChanged("pageCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.DistrictLocation> districtLocation {
-            get {
-                return this.districtLocationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.districtLocationField, value) != true)) {
-                    this.districtLocationField = value;
-                    this.RaisePropertyChanged("districtLocation");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DistrictLocation", Namespace="http://webservices.maplink2.com.br")]
-    [System.SerializableAttribute()]
-    public partial class DistrictLocation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private RouteTotalCalculation.Core.ServiceAddressFinder.District districtField;
-        
-        private RouteTotalCalculation.Core.ServiceAddressFinder.Point pointField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.District district {
-            get {
-                return this.districtField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.districtField, value) != true)) {
-                    this.districtField = value;
-                    this.RaisePropertyChanged("district");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
         public RouteTotalCalculation.Core.ServiceAddressFinder.Point point {
             get {
                 return this.pointField;
@@ -1690,8 +1164,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         private bool capitalField;
         
-        private bool addressesAvailableField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1780,15 +1252,125 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public bool addressesAvailable {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CrossStreetLocation", Namespace="http://webservices.maplink2.com.br")]
+    [System.SerializableAttribute()]
+    public partial class CrossStreetLocation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private RouteTotalCalculation.Core.ServiceAddressFinder.City cityField;
+        
+        private RouteTotalCalculation.Core.ServiceAddressFinder.Point pointField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string crossStreetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string districtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string streetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string zipField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.addressesAvailableField;
+                return this.extensionDataField;
             }
             set {
-                if ((this.addressesAvailableField.Equals(value) != true)) {
-                    this.addressesAvailableField = value;
-                    this.RaisePropertyChanged("addressesAvailable");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.City city {
+            get {
+                return this.cityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.cityField, value) != true)) {
+                    this.cityField = value;
+                    this.RaisePropertyChanged("city");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.Point point {
+            get {
+                return this.pointField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.pointField, value) != true)) {
+                    this.pointField = value;
+                    this.RaisePropertyChanged("point");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string crossStreet {
+            get {
+                return this.crossStreetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.crossStreetField, value) != true)) {
+                    this.crossStreetField = value;
+                    this.RaisePropertyChanged("crossStreet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string district {
+            get {
+                return this.districtField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.districtField, value) != true)) {
+                    this.districtField = value;
+                    this.RaisePropertyChanged("district");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string street {
+            get {
+                return this.streetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.streetField, value) != true)) {
+                    this.streetField = value;
+                    this.RaisePropertyChanged("street");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string zip {
+            get {
+                return this.zipField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.zipField, value) != true)) {
+                    this.zipField = value;
+                    this.RaisePropertyChanged("zip");
                 }
             }
         }
@@ -1825,24 +1407,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         RouteTotalCalculation.Core.ServiceAddressFinder.findAddressResponse EndfindAddress(System.IAsyncResult result);
         
-        // CODEGEN: Generating message contract since element name road from namespace http://webservices.maplink2.com.br is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/findRoad", ReplyAction="*")]
-        RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponse findRoad(RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://webservices.maplink2.com.br/findRoad", ReplyAction="*")]
-        System.IAsyncResult BeginfindRoad(RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest request, System.AsyncCallback callback, object asyncState);
-        
-        RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponse EndfindRoad(System.IAsyncResult result);
-        
-        // CODEGEN: Generating message contract since element name district from namespace http://webservices.maplink2.com.br is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/findDistrict", ReplyAction="*")]
-        RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponse findDistrict(RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://webservices.maplink2.com.br/findDistrict", ReplyAction="*")]
-        System.IAsyncResult BeginfindDistrict(RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest request, System.AsyncCallback callback, object asyncState);
-        
-        RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponse EndfindDistrict(System.IAsyncResult result);
-        
         // CODEGEN: Generating message contract since element name point from namespace http://webservices.maplink2.com.br is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/getAddress", ReplyAction="*")]
         RouteTotalCalculation.Core.ServiceAddressFinder.getAddressResponse getAddress(RouteTotalCalculation.Core.ServiceAddressFinder.getAddressRequest request);
@@ -1861,15 +1425,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         RouteTotalCalculation.Core.ServiceAddressFinder.getXYResponse EndgetXY(System.IAsyncResult result);
         
-        // CODEGEN: Generating message contract since element name road from namespace http://webservices.maplink2.com.br is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/getRoadXY", ReplyAction="*")]
-        RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponse getRoadXY(RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://webservices.maplink2.com.br/getRoadXY", ReplyAction="*")]
-        System.IAsyncResult BegingetRoadXY(RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest request, System.AsyncCallback callback, object asyncState);
-        
-        RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponse EndgetRoadXY(System.IAsyncResult result);
-        
         // CODEGEN: Generating message contract since element name address from namespace http://webservices.maplink2.com.br is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/getXYRadiusWithMap", ReplyAction="*")]
         RouteTotalCalculation.Core.ServiceAddressFinder.getXYRadiusWithMapResponse getXYRadiusWithMap(RouteTotalCalculation.Core.ServiceAddressFinder.getXYRadiusWithMapRequest request);
@@ -1887,6 +1442,24 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         System.IAsyncResult BeginfindCity(RouteTotalCalculation.Core.ServiceAddressFinder.findCityRequest request, System.AsyncCallback callback, object asyncState);
         
         RouteTotalCalculation.Core.ServiceAddressFinder.findCityResponse EndfindCity(System.IAsyncResult result);
+        
+        // CODEGEN: Generating message contract since element name cidade from namespace http://webservices.maplink2.com.br is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/GetCrossStreetXY", ReplyAction="*")]
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponse GetCrossStreetXY(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://webservices.maplink2.com.br/GetCrossStreetXY", ReplyAction="*")]
+        System.IAsyncResult BeginGetCrossStreetXY(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest request, System.AsyncCallback callback, object asyncState);
+        
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponse EndGetCrossStreetXY(System.IAsyncResult result);
+        
+        // CODEGEN: Generating message contract since element name point from namespace http://webservices.maplink2.com.br is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.maplink2.com.br/GetCrossStreetAddress", ReplyAction="*")]
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponse GetCrossStreetAddress(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://webservices.maplink2.com.br/GetCrossStreetAddress", ReplyAction="*")]
+        System.IAsyncResult BeginGetCrossStreetAddress(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest request, System.AsyncCallback callback, object asyncState);
+        
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponse EndGetCrossStreetAddress(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2049,154 +1622,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class findRoadRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="findRoad", Namespace="http://webservices.maplink2.com.br", Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequestBody Body;
-        
-        public findRoadRequest() {
-        }
-        
-        public findRoadRequest(RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
-    public partial class findRoadRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Road road;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string token;
-        
-        public findRoadRequestBody() {
-        }
-        
-        public findRoadRequestBody(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token) {
-            this.road = road;
-            this.token = token;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class findRoadResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="findRoadResponse", Namespace="http://webservices.maplink2.com.br", Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponseBody Body;
-        
-        public findRoadResponse() {
-        }
-        
-        public findRoadResponse(RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
-    public partial class findRoadResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo findRoadResult;
-        
-        public findRoadResponseBody() {
-        }
-        
-        public findRoadResponseBody(RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo findRoadResult) {
-            this.findRoadResult = findRoadResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class findDistrictRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="findDistrict", Namespace="http://webservices.maplink2.com.br", Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequestBody Body;
-        
-        public findDistrictRequest() {
-        }
-        
-        public findDistrictRequest(RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
-    public partial class findDistrictRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.District district;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public string token;
-        
-        public findDistrictRequestBody() {
-        }
-        
-        public findDistrictRequestBody(RouteTotalCalculation.Core.ServiceAddressFinder.District district, RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr, string token) {
-            this.district = district;
-            this.rr = rr;
-            this.token = token;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class findDistrictResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="findDistrictResponse", Namespace="http://webservices.maplink2.com.br", Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponseBody Body;
-        
-        public findDistrictResponse() {
-        }
-        
-        public findDistrictResponse(RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
-    public partial class findDistrictResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo findDistrictResult;
-        
-        public findDistrictResponseBody() {
-        }
-        
-        public findDistrictResponseBody(RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo findDistrictResult) {
-            this.findDistrictResult = findDistrictResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class getAddressRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="getAddress", Namespace="http://webservices.maplink2.com.br", Order=0)]
@@ -2338,78 +1763,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         public getXYResponseBody(RouteTotalCalculation.Core.ServiceAddressFinder.Point getXYResult) {
             this.getXYResult = getXYResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class getRoadXYRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getRoadXY", Namespace="http://webservices.maplink2.com.br", Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequestBody Body;
-        
-        public getRoadXYRequest() {
-        }
-        
-        public getRoadXYRequest(RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
-    public partial class getRoadXYRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Road road;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string token;
-        
-        public getRoadXYRequestBody() {
-        }
-        
-        public getRoadXYRequestBody(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token) {
-            this.road = road;
-            this.token = token;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class getRoadXYResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getRoadXYResponse", Namespace="http://webservices.maplink2.com.br", Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponseBody Body;
-        
-        public getRoadXYResponse() {
-        }
-        
-        public getRoadXYResponse(RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
-    public partial class getRoadXYResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Point getRoadXYResult;
-        
-        public getRoadXYResponseBody() {
-        }
-        
-        public getRoadXYResponseBody(RouteTotalCalculation.Core.ServiceAddressFinder.Point getRoadXYResult) {
-            this.getRoadXYResult = getRoadXYResult;
         }
     }
     
@@ -2569,6 +1922,158 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCrossStreetXYRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCrossStreetXY", Namespace="http://webservices.maplink2.com.br", Order=0)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequestBody Body;
+        
+        public GetCrossStreetXYRequest() {
+        }
+        
+        public GetCrossStreetXYRequest(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
+    public partial class GetCrossStreetXYRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.City cidade;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string firstStreet;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string secondStreet;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string token;
+        
+        public GetCrossStreetXYRequestBody() {
+        }
+        
+        public GetCrossStreetXYRequestBody(RouteTotalCalculation.Core.ServiceAddressFinder.City cidade, string firstStreet, string secondStreet, string token) {
+            this.cidade = cidade;
+            this.firstStreet = firstStreet;
+            this.secondStreet = secondStreet;
+            this.token = token;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCrossStreetXYResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCrossStreetXYResponse", Namespace="http://webservices.maplink2.com.br", Order=0)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponseBody Body;
+        
+        public GetCrossStreetXYResponse() {
+        }
+        
+        public GetCrossStreetXYResponse(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
+    public partial class GetCrossStreetXYResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation> GetCrossStreetXYResult;
+        
+        public GetCrossStreetXYResponseBody() {
+        }
+        
+        public GetCrossStreetXYResponseBody(System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation> GetCrossStreetXYResult) {
+            this.GetCrossStreetXYResult = GetCrossStreetXYResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCrossStreetAddressRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCrossStreetAddress", Namespace="http://webservices.maplink2.com.br", Order=0)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequestBody Body;
+        
+        public GetCrossStreetAddressRequest() {
+        }
+        
+        public GetCrossStreetAddressRequest(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
+    public partial class GetCrossStreetAddressRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.Point point;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string token;
+        
+        public GetCrossStreetAddressRequestBody() {
+        }
+        
+        public GetCrossStreetAddressRequestBody(RouteTotalCalculation.Core.ServiceAddressFinder.Point point, string token) {
+            this.point = point;
+            this.token = token;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetCrossStreetAddressResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCrossStreetAddressResponse", Namespace="http://webservices.maplink2.com.br", Order=0)]
+        public RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponseBody Body;
+        
+        public GetCrossStreetAddressResponse() {
+        }
+        
+        public GetCrossStreetAddressResponse(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.maplink2.com.br")]
+    public partial class GetCrossStreetAddressResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation> GetCrossStreetAddressResult;
+        
+        public GetCrossStreetAddressResponseBody() {
+        }
+        
+        public GetCrossStreetAddressResponseBody(System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation> GetCrossStreetAddressResult) {
+            this.GetCrossStreetAddressResult = GetCrossStreetAddressResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface AddressFinderSoapChannel : RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap, System.ServiceModel.IClientChannel {
     }
@@ -2613,44 +2118,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class findRoadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public findRoadCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class findDistrictCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public findDistrictCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class getAddressCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -2675,25 +2142,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         private object[] results;
         
         public getXYCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Point Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((RouteTotalCalculation.Core.ServiceAddressFinder.Point)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class getRoadXYCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public getRoadXYCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2746,6 +2194,44 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCrossStreetXYCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCrossStreetXYCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCrossStreetAddressCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCrossStreetAddressCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AddressFinderSoapClient : System.ServiceModel.ClientBase<RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap>, RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap {
         
         private BeginOperationDelegate onBeginfindPOIDelegate;
@@ -2760,18 +2246,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         private System.Threading.SendOrPostCallback onfindAddressCompletedDelegate;
         
-        private BeginOperationDelegate onBeginfindRoadDelegate;
-        
-        private EndOperationDelegate onEndfindRoadDelegate;
-        
-        private System.Threading.SendOrPostCallback onfindRoadCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginfindDistrictDelegate;
-        
-        private EndOperationDelegate onEndfindDistrictDelegate;
-        
-        private System.Threading.SendOrPostCallback onfindDistrictCompletedDelegate;
-        
         private BeginOperationDelegate onBegingetAddressDelegate;
         
         private EndOperationDelegate onEndgetAddressDelegate;
@@ -2784,12 +2258,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         private System.Threading.SendOrPostCallback ongetXYCompletedDelegate;
         
-        private BeginOperationDelegate onBegingetRoadXYDelegate;
-        
-        private EndOperationDelegate onEndgetRoadXYDelegate;
-        
-        private System.Threading.SendOrPostCallback ongetRoadXYCompletedDelegate;
-        
         private BeginOperationDelegate onBegingetXYRadiusWithMapDelegate;
         
         private EndOperationDelegate onEndgetXYRadiusWithMapDelegate;
@@ -2801,6 +2269,18 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         private EndOperationDelegate onEndfindCityDelegate;
         
         private System.Threading.SendOrPostCallback onfindCityCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCrossStreetXYDelegate;
+        
+        private EndOperationDelegate onEndGetCrossStreetXYDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCrossStreetXYCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCrossStreetAddressDelegate;
+        
+        private EndOperationDelegate onEndGetCrossStreetAddressDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCrossStreetAddressCompletedDelegate;
         
         public AddressFinderSoapClient() {
         }
@@ -2825,19 +2305,17 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         
         public event System.EventHandler<findAddressCompletedEventArgs> findAddressCompleted;
         
-        public event System.EventHandler<findRoadCompletedEventArgs> findRoadCompleted;
-        
-        public event System.EventHandler<findDistrictCompletedEventArgs> findDistrictCompleted;
-        
         public event System.EventHandler<getAddressCompletedEventArgs> getAddressCompleted;
         
         public event System.EventHandler<getXYCompletedEventArgs> getXYCompleted;
         
-        public event System.EventHandler<getRoadXYCompletedEventArgs> getRoadXYCompleted;
-        
         public event System.EventHandler<getXYRadiusWithMapCompletedEventArgs> getXYRadiusWithMapCompleted;
         
         public event System.EventHandler<findCityCompletedEventArgs> findCityCompleted;
+        
+        public event System.EventHandler<GetCrossStreetXYCompletedEventArgs> GetCrossStreetXYCompleted;
+        
+        public event System.EventHandler<GetCrossStreetAddressCompletedEventArgs> GetCrossStreetAddressCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         RouteTotalCalculation.Core.ServiceAddressFinder.findPOIResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.findPOI(RouteTotalCalculation.Core.ServiceAddressFinder.findPOIRequest request) {
@@ -3006,164 +2484,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.findRoad(RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest request) {
-            return base.Channel.findRoad(request);
-        }
-        
-        public RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo findRoad(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest();
-            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequestBody();
-            inValue.Body.road = road;
-            inValue.Body.token = token;
-            RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).findRoad(inValue);
-            return retVal.Body.findRoadResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.BeginfindRoad(RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginfindRoad(request, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginfindRoad(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token, System.AsyncCallback callback, object asyncState) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequest();
-            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.findRoadRequestBody();
-            inValue.Body.road = road;
-            inValue.Body.token = token;
-            return ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).BeginfindRoad(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.EndfindRoad(System.IAsyncResult result) {
-            return base.Channel.EndfindRoad(result);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo EndfindRoad(System.IAsyncResult result) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.findRoadResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).EndfindRoad(result);
-            return retVal.Body.findRoadResult;
-        }
-        
-        private System.IAsyncResult OnBeginfindRoad(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.Road road = ((RouteTotalCalculation.Core.ServiceAddressFinder.Road)(inValues[0]));
-            string token = ((string)(inValues[1]));
-            return this.BeginfindRoad(road, token, callback, asyncState);
-        }
-        
-        private object[] OnEndfindRoad(System.IAsyncResult result) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.RoadInfo retVal = this.EndfindRoad(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnfindRoadCompleted(object state) {
-            if ((this.findRoadCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.findRoadCompleted(this, new findRoadCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void findRoadAsync(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token) {
-            this.findRoadAsync(road, token, null);
-        }
-        
-        public void findRoadAsync(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token, object userState) {
-            if ((this.onBeginfindRoadDelegate == null)) {
-                this.onBeginfindRoadDelegate = new BeginOperationDelegate(this.OnBeginfindRoad);
-            }
-            if ((this.onEndfindRoadDelegate == null)) {
-                this.onEndfindRoadDelegate = new EndOperationDelegate(this.OnEndfindRoad);
-            }
-            if ((this.onfindRoadCompletedDelegate == null)) {
-                this.onfindRoadCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnfindRoadCompleted);
-            }
-            base.InvokeAsync(this.onBeginfindRoadDelegate, new object[] {
-                        road,
-                        token}, this.onEndfindRoadDelegate, this.onfindRoadCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.findDistrict(RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest request) {
-            return base.Channel.findDistrict(request);
-        }
-        
-        public RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo findDistrict(RouteTotalCalculation.Core.ServiceAddressFinder.District district, RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr, string token) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest();
-            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequestBody();
-            inValue.Body.district = district;
-            inValue.Body.rr = rr;
-            inValue.Body.token = token;
-            RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).findDistrict(inValue);
-            return retVal.Body.findDistrictResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.BeginfindDistrict(RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginfindDistrict(request, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginfindDistrict(RouteTotalCalculation.Core.ServiceAddressFinder.District district, RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr, string token, System.AsyncCallback callback, object asyncState) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequest();
-            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictRequestBody();
-            inValue.Body.district = district;
-            inValue.Body.rr = rr;
-            inValue.Body.token = token;
-            return ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).BeginfindDistrict(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.EndfindDistrict(System.IAsyncResult result) {
-            return base.Channel.EndfindDistrict(result);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo EndfindDistrict(System.IAsyncResult result) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.findDistrictResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).EndfindDistrict(result);
-            return retVal.Body.findDistrictResult;
-        }
-        
-        private System.IAsyncResult OnBeginfindDistrict(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.District district = ((RouteTotalCalculation.Core.ServiceAddressFinder.District)(inValues[0]));
-            RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr = ((RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange)(inValues[1]));
-            string token = ((string)(inValues[2]));
-            return this.BeginfindDistrict(district, rr, token, callback, asyncState);
-        }
-        
-        private object[] OnEndfindDistrict(System.IAsyncResult result) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.DistrictInfo retVal = this.EndfindDistrict(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnfindDistrictCompleted(object state) {
-            if ((this.findDistrictCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.findDistrictCompleted(this, new findDistrictCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void findDistrictAsync(RouteTotalCalculation.Core.ServiceAddressFinder.District district, RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr, string token) {
-            this.findDistrictAsync(district, rr, token, null);
-        }
-        
-        public void findDistrictAsync(RouteTotalCalculation.Core.ServiceAddressFinder.District district, RouteTotalCalculation.Core.ServiceAddressFinder.ResultRange rr, string token, object userState) {
-            if ((this.onBeginfindDistrictDelegate == null)) {
-                this.onBeginfindDistrictDelegate = new BeginOperationDelegate(this.OnBeginfindDistrict);
-            }
-            if ((this.onEndfindDistrictDelegate == null)) {
-                this.onEndfindDistrictDelegate = new EndOperationDelegate(this.OnEndfindDistrict);
-            }
-            if ((this.onfindDistrictCompletedDelegate == null)) {
-                this.onfindDistrictCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnfindDistrictCompleted);
-            }
-            base.InvokeAsync(this.onBeginfindDistrictDelegate, new object[] {
-                        district,
-                        rr,
-                        token}, this.onEndfindDistrictDelegate, this.onfindDistrictCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         RouteTotalCalculation.Core.ServiceAddressFinder.getAddressResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.getAddress(RouteTotalCalculation.Core.ServiceAddressFinder.getAddressRequest request) {
             return base.Channel.getAddress(request);
         }
@@ -3319,83 +2639,6 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
             base.InvokeAsync(this.onBegingetXYDelegate, new object[] {
                         address,
                         token}, this.onEndgetXYDelegate, this.ongetXYCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.getRoadXY(RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest request) {
-            return base.Channel.getRoadXY(request);
-        }
-        
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Point getRoadXY(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest();
-            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequestBody();
-            inValue.Body.road = road;
-            inValue.Body.token = token;
-            RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).getRoadXY(inValue);
-            return retVal.Body.getRoadXYResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.BegingetRoadXY(RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BegingetRoadXY(request, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BegingetRoadXY(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token, System.AsyncCallback callback, object asyncState) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequest();
-            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYRequestBody();
-            inValue.Body.road = road;
-            inValue.Body.token = token;
-            return ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).BegingetRoadXY(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.EndgetRoadXY(System.IAsyncResult result) {
-            return base.Channel.EndgetRoadXY(result);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public RouteTotalCalculation.Core.ServiceAddressFinder.Point EndgetRoadXY(System.IAsyncResult result) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.getRoadXYResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).EndgetRoadXY(result);
-            return retVal.Body.getRoadXYResult;
-        }
-        
-        private System.IAsyncResult OnBegingetRoadXY(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.Road road = ((RouteTotalCalculation.Core.ServiceAddressFinder.Road)(inValues[0]));
-            string token = ((string)(inValues[1]));
-            return this.BegingetRoadXY(road, token, callback, asyncState);
-        }
-        
-        private object[] OnEndgetRoadXY(System.IAsyncResult result) {
-            RouteTotalCalculation.Core.ServiceAddressFinder.Point retVal = this.EndgetRoadXY(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OngetRoadXYCompleted(object state) {
-            if ((this.getRoadXYCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.getRoadXYCompleted(this, new getRoadXYCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void getRoadXYAsync(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token) {
-            this.getRoadXYAsync(road, token, null);
-        }
-        
-        public void getRoadXYAsync(RouteTotalCalculation.Core.ServiceAddressFinder.Road road, string token, object userState) {
-            if ((this.onBegingetRoadXYDelegate == null)) {
-                this.onBegingetRoadXYDelegate = new BeginOperationDelegate(this.OnBegingetRoadXY);
-            }
-            if ((this.onEndgetRoadXYDelegate == null)) {
-                this.onEndgetRoadXYDelegate = new EndOperationDelegate(this.OnEndgetRoadXY);
-            }
-            if ((this.ongetRoadXYCompletedDelegate == null)) {
-                this.ongetRoadXYCompletedDelegate = new System.Threading.SendOrPostCallback(this.OngetRoadXYCompleted);
-            }
-            base.InvokeAsync(this.onBegingetRoadXYDelegate, new object[] {
-                        road,
-                        token}, this.onEndgetRoadXYDelegate, this.ongetRoadXYCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3562,6 +2805,168 @@ namespace RouteTotalCalculation.Core.ServiceAddressFinder {
                         cidade,
                         ao,
                         token}, this.onEndfindCityDelegate, this.onfindCityCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.GetCrossStreetXY(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest request) {
+            return base.Channel.GetCrossStreetXY(request);
+        }
+        
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation> GetCrossStreetXY(RouteTotalCalculation.Core.ServiceAddressFinder.City cidade, string firstStreet, string secondStreet, string token) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest();
+            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequestBody();
+            inValue.Body.cidade = cidade;
+            inValue.Body.firstStreet = firstStreet;
+            inValue.Body.secondStreet = secondStreet;
+            inValue.Body.token = token;
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).GetCrossStreetXY(inValue);
+            return retVal.Body.GetCrossStreetXYResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.BeginGetCrossStreetXY(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCrossStreetXY(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCrossStreetXY(RouteTotalCalculation.Core.ServiceAddressFinder.City cidade, string firstStreet, string secondStreet, string token, System.AsyncCallback callback, object asyncState) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequest();
+            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYRequestBody();
+            inValue.Body.cidade = cidade;
+            inValue.Body.firstStreet = firstStreet;
+            inValue.Body.secondStreet = secondStreet;
+            inValue.Body.token = token;
+            return ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).BeginGetCrossStreetXY(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.EndGetCrossStreetXY(System.IAsyncResult result) {
+            return base.Channel.EndGetCrossStreetXY(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation> EndGetCrossStreetXY(System.IAsyncResult result) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetXYResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).EndGetCrossStreetXY(result);
+            return retVal.Body.GetCrossStreetXYResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetCrossStreetXY(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.City cidade = ((RouteTotalCalculation.Core.ServiceAddressFinder.City)(inValues[0]));
+            string firstStreet = ((string)(inValues[1]));
+            string secondStreet = ((string)(inValues[2]));
+            string token = ((string)(inValues[3]));
+            return this.BeginGetCrossStreetXY(cidade, firstStreet, secondStreet, token, callback, asyncState);
+        }
+        
+        private object[] OnEndGetCrossStreetXY(System.IAsyncResult result) {
+            System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.CrossStreetLocation> retVal = this.EndGetCrossStreetXY(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCrossStreetXYCompleted(object state) {
+            if ((this.GetCrossStreetXYCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCrossStreetXYCompleted(this, new GetCrossStreetXYCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCrossStreetXYAsync(RouteTotalCalculation.Core.ServiceAddressFinder.City cidade, string firstStreet, string secondStreet, string token) {
+            this.GetCrossStreetXYAsync(cidade, firstStreet, secondStreet, token, null);
+        }
+        
+        public void GetCrossStreetXYAsync(RouteTotalCalculation.Core.ServiceAddressFinder.City cidade, string firstStreet, string secondStreet, string token, object userState) {
+            if ((this.onBeginGetCrossStreetXYDelegate == null)) {
+                this.onBeginGetCrossStreetXYDelegate = new BeginOperationDelegate(this.OnBeginGetCrossStreetXY);
+            }
+            if ((this.onEndGetCrossStreetXYDelegate == null)) {
+                this.onEndGetCrossStreetXYDelegate = new EndOperationDelegate(this.OnEndGetCrossStreetXY);
+            }
+            if ((this.onGetCrossStreetXYCompletedDelegate == null)) {
+                this.onGetCrossStreetXYCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCrossStreetXYCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCrossStreetXYDelegate, new object[] {
+                        cidade,
+                        firstStreet,
+                        secondStreet,
+                        token}, this.onEndGetCrossStreetXYDelegate, this.onGetCrossStreetXYCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.GetCrossStreetAddress(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest request) {
+            return base.Channel.GetCrossStreetAddress(request);
+        }
+        
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation> GetCrossStreetAddress(RouteTotalCalculation.Core.ServiceAddressFinder.Point point, string token) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest();
+            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequestBody();
+            inValue.Body.point = point;
+            inValue.Body.token = token;
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).GetCrossStreetAddress(inValue);
+            return retVal.Body.GetCrossStreetAddressResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.BeginGetCrossStreetAddress(RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCrossStreetAddress(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCrossStreetAddress(RouteTotalCalculation.Core.ServiceAddressFinder.Point point, string token, System.AsyncCallback callback, object asyncState) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest inValue = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequest();
+            inValue.Body = new RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressRequestBody();
+            inValue.Body.point = point;
+            inValue.Body.token = token;
+            return ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).BeginGetCrossStreetAddress(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponse RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap.EndGetCrossStreetAddress(System.IAsyncResult result) {
+            return base.Channel.EndGetCrossStreetAddress(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation> EndGetCrossStreetAddress(System.IAsyncResult result) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.GetCrossStreetAddressResponse retVal = ((RouteTotalCalculation.Core.ServiceAddressFinder.AddressFinderSoap)(this)).EndGetCrossStreetAddress(result);
+            return retVal.Body.GetCrossStreetAddressResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetCrossStreetAddress(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            RouteTotalCalculation.Core.ServiceAddressFinder.Point point = ((RouteTotalCalculation.Core.ServiceAddressFinder.Point)(inValues[0]));
+            string token = ((string)(inValues[1]));
+            return this.BeginGetCrossStreetAddress(point, token, callback, asyncState);
+        }
+        
+        private object[] OnEndGetCrossStreetAddress(System.IAsyncResult result) {
+            System.Collections.Generic.List<RouteTotalCalculation.Core.ServiceAddressFinder.AddressLocation> retVal = this.EndGetCrossStreetAddress(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCrossStreetAddressCompleted(object state) {
+            if ((this.GetCrossStreetAddressCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCrossStreetAddressCompleted(this, new GetCrossStreetAddressCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCrossStreetAddressAsync(RouteTotalCalculation.Core.ServiceAddressFinder.Point point, string token) {
+            this.GetCrossStreetAddressAsync(point, token, null);
+        }
+        
+        public void GetCrossStreetAddressAsync(RouteTotalCalculation.Core.ServiceAddressFinder.Point point, string token, object userState) {
+            if ((this.onBeginGetCrossStreetAddressDelegate == null)) {
+                this.onBeginGetCrossStreetAddressDelegate = new BeginOperationDelegate(this.OnBeginGetCrossStreetAddress);
+            }
+            if ((this.onEndGetCrossStreetAddressDelegate == null)) {
+                this.onEndGetCrossStreetAddressDelegate = new EndOperationDelegate(this.OnEndGetCrossStreetAddress);
+            }
+            if ((this.onGetCrossStreetAddressCompletedDelegate == null)) {
+                this.onGetCrossStreetAddressCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCrossStreetAddressCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCrossStreetAddressDelegate, new object[] {
+                        point,
+                        token}, this.onEndGetCrossStreetAddressDelegate, this.onGetCrossStreetAddressCompletedDelegate, userState);
         }
     }
 }

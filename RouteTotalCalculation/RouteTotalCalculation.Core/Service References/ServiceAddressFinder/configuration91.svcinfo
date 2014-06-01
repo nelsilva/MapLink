@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="KjPXCNofxR7RnwvnqzLuOrexvHo=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="HMKGDvodQIcOk29vfW69/aJvdqE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="AddressFinderSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="AddressFinderSoap" contract="ServiceAddressFinder.AddressFinderSoap" bindingType="basicHttpBinding" address="http://services.maplink.com.br/webservices/v3.1/AddressFinder/AddressFinder.asmx" bindingConfiguration="AddressFinderSoap">
+    <endpoint name="AddressFinderSoap" contract="ServiceAddressFinder.AddressFinderSoap" bindingType="basicHttpBinding" address="http://services.maplink.com.br/webservices/v3/AddressFinder/AddressFinder.asmx" bindingConfiguration="AddressFinderSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://services.maplink.com.br/webservices/v3.1/AddressFinder/AddressFinder.asmx</serializedValue>
+          <serializedValue>http://services.maplink.com.br/webservices/v3/AddressFinder/AddressFinder.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
