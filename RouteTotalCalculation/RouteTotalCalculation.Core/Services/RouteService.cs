@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using RouteTotalCalculation.Core.Contracts;
 using RouteTotalCalculation.Core.ServiceRoute;
 
 namespace RouteTotalCalculation.Core.Services
 {
-	public static class RouteService
+	public class RouteService : IRouteService
 	{
-		public static RouteTotals GetRouteTotalsResponse(IList<RouteStop> routes, RouteOptions routeOptions)
+		public RouteTotals GetRouteTotalsResponse(IList<RouteStop> routes, RouteOptions routeOptions)
 		{
 			using (var routeSoapClient = new RouteSoapClient())
 			{

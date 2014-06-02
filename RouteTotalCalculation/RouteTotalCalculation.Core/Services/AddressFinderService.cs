@@ -1,10 +1,11 @@
-﻿using RouteTotalCalculation.Core.ServiceAddressFinder;
+﻿using RouteTotalCalculation.Core.Contracts;
+using RouteTotalCalculation.Core.ServiceAddressFinder;
 
 namespace RouteTotalCalculation.Core.Services
 {
-	public static class AddressFinderService
+	public class AddressFinderService : IAddressFinderService
 	{
-		public static Point GetCoordinates(Address address)
+		public Point GetCoordinates(Address address)
 		{
 			using (var addressFinderSoapClient = new AddressFinderSoapClient())
 			{

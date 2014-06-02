@@ -44,7 +44,10 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Contracts\IAddress.cs" />
+    <Compile Include="Contracts\IAddressFinderService.cs" />
+    <Compile Include="Contracts\ICalculateTotalOfRouteService.cs" />
     <Compile Include="Contracts\IRouteTotalValues.cs" />
+    <Compile Include="Contracts\IRouteService.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\ModelFactory.cs" />
     <Compile Include="Model\RouteTotalValues.cs" />

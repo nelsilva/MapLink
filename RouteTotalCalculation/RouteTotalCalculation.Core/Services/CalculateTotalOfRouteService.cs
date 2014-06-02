@@ -6,17 +6,26 @@ using RouteTotalCalculation.Core.ServiceRoute;
 
 namespace RouteTotalCalculation.Core.Services
 {
-	public static class CalculateTotalOfRouteService
+	public class CalculateTotalOfRouteService : ICalculateTotalOfRouteService
 	{
-		public static IRouteTotalValues GetTotalValuesOfRoute(IEnumerable<IAddress> addresses, int routeTypes)
+		private readonly IAddressFinderService _addressFinderService;
+		private readonly IRouteService _routeService;
+
+		public CalculateTotalOfRouteService(IRouteService routeService, IAddressFinderService addressFinderService)
 		{
-			RouteOptions routeOptions = ModelFactory.Create(routeTypes);
-			IEnumerable<AddressLocation> locations = ModelFactory.Create(addresses);
-			IList<RouteStop> routes = ModelFactory.Create(locations);
+			_routeService = routeService;
+			_addressFinderService = addressFinderService;
+		}
 
-			RouteTotals routeTotal = RouteService.GetRouteTotalsResponse(routes, routeOptions);
+		public IRouteTotalValues GetTotalValuesOfRoute(IEnumerable<IAddress> addresses, int routeTypes)
+		{
+			var modelFactory = new ModelFactory(_addressFinderService);
+			RouteOptions routeOptions = modelFactory.Create(routeTypes);
+			IList<AddressLocation> locations = modelFactory.Create(addresses);
+			IList<RouteStop> routes = modelFactory.Create(locations);
+			RouteTotals routeTotal = _routeService.GetRouteTotalsResponse(routes, routeOptions);
 
-			return ModelFactory.Create(routeTotal);
+			return modelFactory.Create(routeTotal);
 		}
 	}
 }

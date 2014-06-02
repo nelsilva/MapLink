@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using Newtonsoft.Json;
+using RouteTotalCalculation.Core.Contracts;
 using RouteTotalCalculation.Core.Model;
 using RouteTotalCalculation.Core.Services;
 
@@ -20,7 +21,11 @@ namespace RouteTotalCalculation.Api.Controllers
 
 				IList<Address> addresses = JsonConvert.DeserializeObject<List<Address>>(jsonAddresses);
 
-				return Ok(CalculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, routeTypes));
+				IRouteService routeService = new RouteService();
+				IAddressFinderService addressFinderService = new AddressFinderService();
+				ICalculateTotalOfRouteService calculateTotalOfRouteService = new CalculateTotalOfRouteService(routeService, addressFinderService);
+
+				return Ok(calculateTotalOfRouteService.GetTotalValuesOfRoute(addresses, routeTypes));
 			}
 			catch (Exception ex)
 			{

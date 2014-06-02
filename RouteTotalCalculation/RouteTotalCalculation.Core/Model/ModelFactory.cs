@@ -4,15 +4,21 @@ using System.Linq;
 using RouteTotalCalculation.Core.Contracts;
 using RouteTotalCalculation.Core.ServiceAddressFinder;
 using RouteTotalCalculation.Core.ServiceRoute;
-using RouteTotalCalculation.Core.Services;
 using City = RouteTotalCalculation.Core.ServiceAddressFinder.City;
 using Point = RouteTotalCalculation.Core.ServiceRoute.Point;
 
 namespace RouteTotalCalculation.Core.Model
 {
-	public static class ModelFactory
+	public class ModelFactory
 	{
-		public static ServiceAddressFinder.Address Create(IAddress address)
+		private readonly IAddressFinderService _addressFinderService;
+
+		public ModelFactory(IAddressFinderService addressFinderService)
+		{
+			_addressFinderService = addressFinderService;
+		}
+
+		public ServiceAddressFinder.Address Create(IAddress address)
 		{
 			if (address == null) throw new ArgumentNullException("address");
 			var serviceAddress = new ServiceAddressFinder.Address
@@ -24,16 +30,17 @@ namespace RouteTotalCalculation.Core.Model
 			return serviceAddress;
 		}
 
-		public static IList<AddressLocation> Create(IEnumerable<IAddress> addresses)
+		public IList<AddressLocation> Create(IEnumerable<IAddress> addresses)
 		{
 			if (addresses == null) throw new ArgumentNullException("addresses");
 			return addresses.Select(Create).Select(serviceAddress => new AddressLocation
 			{
-				address = serviceAddress, point = AddressFinderService.GetCoordinates(serviceAddress)
+				address = serviceAddress,
+				point = _addressFinderService.GetCoordinates(serviceAddress)
 			}).ToList();
 		}
 
-		public static IList<RouteStop> Create(IEnumerable<AddressLocation> addressesLocation)
+		public IList<RouteStop> Create(IEnumerable<AddressLocation> addressesLocation)
 		{
 			return addressesLocation.Select(addressLocation => new RouteStop
 			{
@@ -48,12 +55,12 @@ namespace RouteTotalCalculation.Core.Model
 			}).ToList();
 		}
 
-		public static IAddress Create(string streetValue, string houseNumber, string cityNameValue, string cityStateValue)
+		public IAddress Create(string streetValue, string houseNumber, string cityNameValue, string cityStateValue)
 		{
 			return new Address(streetValue, houseNumber, cityNameValue, cityStateValue);
 		}
 
-		public static RouteStop Create(string descriptionValue, double xValue, double yValue)
+		public RouteStop Create(string descriptionValue, double xValue, double yValue)
 		{
 			return new RouteStop
 			{
@@ -62,12 +69,12 @@ namespace RouteTotalCalculation.Core.Model
 			};
 		}
 
-		public static IRouteTotalValues Create(RouteTotals routeTotals)
+		public IRouteTotalValues Create(RouteTotals routeTotals)
 		{
 			return new RouteTotalValues(routeTotals.totalDistance, routeTotals.totalTime, routeTotals.totalfuelCost, routeTotals.totalCost);
 		}
 
-		public static RouteOptions Create(int routeTypes)
+		public RouteOptions Create(int routeTypes)
 		{
 			if (routeTypes != 0 && routeTypes != 23)
 				throw new Exception("Deve enviar somente 0 para rota padrão rápida ou 23 para rota evitando o trânsito");
