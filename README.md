@@ -1,3 +1,7 @@
+
+[![Build status](https://ci.appveyor.com/api/projects/status/pxdm4h484au96dya)](https://ci.appveyor.com/project/rubenskm/maplink)
+
+
 Desafio Desenvolvedor Sênior
 ======================================
 
